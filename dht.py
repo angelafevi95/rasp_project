@@ -15,7 +15,7 @@ class dht():
         humidityList = []
         temperatureList = []
 
-        humidity, temperaure = Adafruit_DHT.read_retry(self.__sensor, self.__port)
+        humidity, temperature = Adafruit_DHT.read_retry(self.__sensor, self.__port)
         humidityList.append(humidity)
         temperatureList.append(temperature)
 
@@ -38,9 +38,6 @@ class dht():
         plt.plot
 
 
-dht = dht()
-hum, temp = dht.get_data()
 
-dht.show_measures(hum, temp)
 
 print("dht hohoho")
