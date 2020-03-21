@@ -4,7 +4,7 @@ import time
 import matplotlib.pyplot as plt
 
 
-class dht(): 
+class dht: 
 
     ## New sensor creation
     self.__sensor = Adafruit_DHT.DHT11
