@@ -4,25 +4,30 @@ import time
 import matplotlib.pyplot as plt
 
 
-class dht: 
+class dht(): 
 
+    def __init__(self):
     ## New sensor creation
-    self.__sensor = Adafruit_DHT.DHT11
+        self.__sensor = Adafruit_DHT.DHT11
     ## GPIO port 
-    self.__port = 23
+        self.__port = 23
 
     def get_data(self):
-        humidityList = []
-        temperatureList = []
+        for i in range(0, 5):
+            humidityList = []
+            temperatureList = []
 
-        humidity, temperature = Adafruit_DHT.read_retry(self.__sensor, self.__port)
-        humidityList.append(humidity)
-        temperatureList.append(temperature)
+            humidity, temperature = Adafruit_DHT.read_retry(self.__sensor, self.__port)
+            
+            humidityList.append(humidity)
+            temperatureList.append(temperature)
+         
+            time.sleep(2)
 
         return humidityList, temperatureList
 
-    def show_mesaures(self, humidity, temperature):
-        print("Humidity", humidity, "Temperature", temperature)
+   # def show_list(self, name, showlist):
+       #  print(name, showlist)
 
     def write_to_excel(self, humidity, temperature ):
         df = pd.DataFrame({"HUMIDITY": humidity, "TEMPERATURE": temperature})

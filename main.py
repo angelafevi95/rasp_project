@@ -1,9 +1,12 @@
-import dht 
 
+from dht import dht 
 
 dht = dht()
 hum, temp = dht.get_data()
 
-dht.show_measures(hum, temp)
+for data in hum: 
+    print("HUmidity", data, "%")
+
+print("temperature", temp, "ªC")
 
 print("main done bix")
