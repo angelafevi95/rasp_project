@@ -13,16 +13,15 @@ class dht():
         self.__port = 23
 
     def get_data(self):
+        humidityList = []
+        temperatureList = []
         for i in range(0, 5):
-            humidityList = []
-            temperatureList = []
-
             humidity, temperature = Adafruit_DHT.read_retry(self.__sensor, self.__port)
             
             humidityList.append(humidity)
             temperatureList.append(temperature)
          
-            time.sleep(2)
+            time.sleep(300)
 
         return humidityList, temperatureList
 
