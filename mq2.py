@@ -140,7 +140,7 @@ class MQ():
     def MQGetPercentage(self, rs_ro_ratio, pcurve):
         
         calc = (math.pow(10,( ((math.log(rs_ro_ratio)-pcurve[1])/ pcurve[2]) + pcurve[0])))
-       # print("porcentaje")
+        calc = round(cakc, 6)
         return calc
 
     def get_data(self):
