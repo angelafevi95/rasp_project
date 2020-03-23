@@ -21,7 +21,7 @@ class dht():
             humidityList.append(humidity)
             temperatureList.append(temperature)
          
-            time.sleep(300)
+            time.sleep(3)
 
         return humidityList, temperatureList
 

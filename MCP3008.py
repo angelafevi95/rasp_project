@@ -1,40 +1,21 @@
-
-import spidev 
-import time 
-import so
+from spidev import SpiDev
 
 class MCP3008:
+    def __init__(self, bus = 0, device = 0):
+        self.bus, self.device = bus, device
+        self.spi = SpiDev()
+        self.open()
+        self.spi.max_speed_hz = 1000000 # 1MHz
 
-    ## Intiliza SPI connection  
-    def __init__(self):
-        self.spi = spidev.SpiDev()
-        self.open(0, 0)
-        self.max_speed_hz = 1000000# 1MHz
+    def open(self):
+        self.spi.open(self.bus, self.device)
+        self.spi.max_speed_hz = 1000000 # 1MHz
+    
+    def read(self, channel = 0):
+        adc = self.spi.xfer2([1,(8+channel)<<4,0])
+        data = ((adc[1]&3) << 8) + adc[2]
+        return data
 
-   ## Get SPI data 
-   #  Input: channel (0-7)
-   #  Output: data values 
-
-   def getAnalogData(self, channel):
-      
-       adc = self.spi.xfer2([1, (8 + channel) << 4, ]0)
-       data = ((adc[1]&3) << 8) + adc[2]
-
-       return data  
-
-   ## Convert SPI data to voltage
-   # Input: SPI data 
-   # Output: volts
-
-   def getVolts(self, data):
-      # Vref == Vdd LLC output  
-        vref = 3.21  
-       # if vref = 3.3 -> bits = 1032// if vref = 3.21 =>    996 bits
-       volts = (data * vref) / float(996)
-       volts = round(volts,1)
-
-       return volts 
-
-    def closeSPI(self):
-
-        self.spi.closeSPI()
+            
+    def close(self):
+        self.spi.close()
