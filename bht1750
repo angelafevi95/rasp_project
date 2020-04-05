@@ -1,7 +1,0 @@
-
-import smbus 
-import time 
-import operator 
-
-class bht1750():
-    
