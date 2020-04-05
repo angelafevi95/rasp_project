@@ -70,9 +70,9 @@ class bht1750():
 
     def measure_high_res(self, additional_delay = 0):
         return self.do_measurement(self.ONE_TIME_RE_MODE_1, additional_delay)
-         
 
 
+print("BHT DONE")
 
 
 

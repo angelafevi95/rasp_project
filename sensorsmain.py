@@ -1,5 +1,5 @@
 from dht import *
-form mq2 import *
+from mq2 import *
 from bht1750 import *
 
 ## Sound noise measures
