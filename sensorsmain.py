@@ -1,16 +1,17 @@
 from dht import *
 from mq2 import *
-from bht1750 import *
+# from bht1750 import *
+
+from ldr import *
 
 ## Sound noise measures
-bus = smbus.SMBus(1)
-sensor = bht1750(bus)
+# bus = smbus.SMBus(1)
+# sensor = bht1750(bus)
 
-print("Sensitivity: ", sensor.mtreg)
-measure = sensor.measure_high_res()
+# print("Sensitivity: ", sensor.mtreg)
+# measure = sensor.measure_high_res()
 
-print ("Light Level ", measure)
-
+# print ("Light Level ", measure)
 
 ## Temperature and humidity measures
 # dht = dht()
@@ -26,6 +27,10 @@ print ("Light Level ", measure)
 # print("LPG", listLPG)
 # print("CO", listCO)
 # print("SMOKE", listSMOKE)
+
+ldr = ldr(11)
+
+print("Lux: ", ldr.get_lux())
 
 
 

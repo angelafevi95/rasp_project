@@ -22,10 +22,10 @@ class bht1750():
        self.bus.write_byte(self.addr, self.mode)
 
     def power_down(self):
-        self._set_mode(self.POWER_DOWN)
+       self._set_mode(self.POWER_DOWN)
 
     def power_on(self):
-        self._set_mode(self.POWER_ON)
+       self._set_mode(self.POWER_ON)
 
     def reset(self):
         self.power_on()#It has to be powered on before reseting 
