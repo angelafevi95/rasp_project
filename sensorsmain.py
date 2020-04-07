@@ -31,9 +31,9 @@ from ldr import ldr
 # print("CO", listCO)
 # print("SMOKE", listSMOKE)
 
-ldr = ldr(11)
+ldr1 = ldr(11)
 
-lux = ldr.get_lux()
+lux = ldr1.get_lux()
 print(lux)
 
 ldr2 = ldr(13)
