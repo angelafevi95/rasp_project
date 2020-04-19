@@ -10,12 +10,15 @@ class ldr():
         GPIO.setup(port, GPIO.IN)
         self.port = port 
 
+    # def get_lux(self):
+    #     luxList = [] 
+    #     for i in range(0,5):
+    #         luxList.append(GPIO.input(self.port))
+    #         time.sleep(3)
+
+    #     return luxList
+
     def get_lux(self):
-        luxList = [] 
-        for i in range(0,5):
-            luxList.append(GPIO.input(self.port))
-            time.sleep(3)
-
-        return luxList
-
+        lux = GPIO.input(self.port)
+        return lux
     
