@@ -52,15 +52,15 @@ class mongoDB():
     #     records.delete_one({'key': value})
 
 
+    
 
+# def main():
 
-def main():
+#     mongo = mongoDB()
 
-    mongo = mongoDB()
-
-    records = mongo.getCollection()
-    countDocs = mongo.getCountDocs(records)
-    print("Count", countDocs)
+#     records = mongo.getCollection()
+#     countDocs = mongo.getCountDocs(records)
+#     print("Count", countDocs)
 
 main()
 print("klok")

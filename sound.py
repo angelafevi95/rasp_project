@@ -19,18 +19,18 @@ class sound():
         self.adc = mcp(1)
 
     def voltCalculation(self, raw_adc):
-        vref = 3.21 ## LLC output 
+        vref = 5 ## LLC output 
         # If vref = 3.3 -> 1024bit => if vref = 3.21 -> 996.0bit
-        vdig = (996.0 * raw_adc)/vref
+        vdig = (1024 * raw_adc)/vref
         return vdig 
 
     def sensorRead(self, KYpin ):
 
         val = 0.0
         for i in range(self.READ_SAMPLE_TIMES):
-            rs +=  self.volCalculation(self.adc.read(KYpin))
+            vs +=  self.voltCalculation(self.adc.read(KYpin))
             time.sleep(self.READ_SAMPLE_INTERVAL/1000.0)
 
-        rs = rs/self.READ_SAMPLE_TIMES
+        vs = vs/self.READ_SAMPLE_TIMES
 
-        return rs
+        return vs

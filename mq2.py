@@ -144,15 +144,20 @@ class MQ():
         return calc
 
     def get_data(self):
-        listLPG = []
-        listCO= []
-        listSMOKE = []
+        # listLPG = []
+        # listCO= []
+        # listSMOKE = []
 
-        for i in range(0,5):
-            perc = self.MQPercentage()
-            listLPG.append(perc["GAS_LPG"])
-            listCO.append(perc["CO"])
-            listSMOKE.append(perc["SMOKE"])
-            time.sleep(3)
+        # for i in range(0,5):
+        #     perc = self.MQPercentage()
+        #     listLPG.append(perc["GAS_LPG"])
+        #     listCO.append(perc["CO"])
+        #     listSMOKE.append(perc["SMOKE"])
+        #     time.sleep(3)
 
-        return listLPG, listCO, listSMOKE
+        # return listLPG, listCO, listSMOKE
+
+
+        perc = self.MQPercentage()
+        return perc["GAS_LPG"], perc["CO"], perc["SMOKE"]
+
