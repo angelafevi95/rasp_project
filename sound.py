@@ -4,33 +4,22 @@ from MCP3008 import MCP3008 as mcp
 
 class sound():
 
-     RL_VALUE                     = 2.2    # As per datasheet
+    KY_PIN                       = 1
+    RL_VALUE                     = 2.2    # As per datasheet
 
-        ######################### Software Related Macros #########################
-    CALIBARAION_SAMPLE_TIMES     = 50       # define how many samples you are going to take in the calibration phase
-    CALIBRATION_SAMPLE_INTERVAL  = 500      # define the time interval(in milisecond) between each samples in the
-                                            # cablibration phase
-    READ_SAMPLE_INTERVAL         = 50       # define the time interval(in milisecond) between each samples in
-    READ_SAMPLE_TIMES            = 5        # define how many samples you are going to take in normal operation 
-                                            # normal operation
-
-    def __init__(self, analogPin = 0):
+    def __init__(self, analogPin = 1):
         self.KY_PIN = analogPin
         self.adc = mcp(1)
 
-    def voltCalculation(self, raw_adc):
+    def voltCalculation(self):
         vref = 5 ## LLC output 
         # If vref = 3.3 -> 1024bit => if vref = 3.21 -> 996.0bit
-        vdig = (1024 * raw_adc)/vref
+        raw_adc = self.adc.read(self.KY_PIN)
+
+        vdig = (vref * raw_adc)/1023
         return vdig 
 
-    def sensorRead(self, KYpin ):
 
-        val = 0.0
-        for i in range(self.READ_SAMPLE_TIMES):
-            vs +=  self.voltCalculation(self.adc.read(KYpin))
-            time.sleep(self.READ_SAMPLE_INTERVAL/1000.0)
+    print('sound')
 
-        vs = vs/self.READ_SAMPLE_TIMES
 
-        return vs

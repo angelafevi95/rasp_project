@@ -1,21 +1,57 @@
-from spidev import SpiDev
+import time 
 
-class MCP3008(channel):
-    def __init__(self, bus = 0, device = 0):
-        self.bus, self.device = bus, device
-        self.spi = SpiDev()
-        self.open()
-        self.spi.max_speed_hz = 1000000 # 1MHz
+import Adafruit_GPIO.SPI as SPI
+import Adafruit_MCP3008
 
-    def open(self):
-        self.spi.open(self.bus, self.device)
-        self.spi.max_speed_hz = 1000000 # 1MHz
-    
+# Software SPI configuration:
+CLK  = 18
+MISO = 23
+MOSI = 24
+CS   = 25
+mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+
+
+
+class MCP3008():
+
+    def __init__(self):
+        self.CLK =  18
+        self.MISO = 23
+        self.MOSI = 24
+        self.CS   = 25
+        self.nchannel = analogPin
+        self.mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+
     def read(self):
-        adc = self.spi.xfer2([1,(channel)<<4,0])
-        data = ((adc[1]&3) << 8) + adc[2]
-        return data
 
-            
-    def close(self):
-        self.spi.close()
+        # values = [0]*nchannels
+        # for i in range(nchannels):
+        #     values[i] = mcp.read_adc(i)
+
+        value = mcp.read_adc(self.nchannel)
+
+        return value
+
+    def printall(self):
+
+        print('Reading MCP3008 values, press Ctrl-C to quit...')
+        # Print nice channel column headers.
+        print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*range(8)))
+        print('-' * 57)
+
+        # Main program loop.
+        while True:
+            # Read all the ADC channel values in a list.
+            values = [0]*8
+            for i in range(8):
+                # The read_adc function will get the value of the specified channel (0-7).
+                values[i] = mcp.read_adc(i)
+            # Print the ADC values.
+            print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+            # Pause for half a second.
+            time.sleep(0.5)
+
+        
+
+
+
