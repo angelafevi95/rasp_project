@@ -62,7 +62,7 @@ def createLists():
         dhtTempList.append(temp)
         listLPG, listCO, listSMOKE = mq.get_data()
         mqSmokeList.append(listSMOKE)
-        soundList.append(sound.sensorRead())
+        soundList.append(sound.voltCalculation())
 
         time.sleep(2)
 
