@@ -14,7 +14,7 @@ class sound():
     def voltCalculation(self):
         vref = 5 ## LLC output 
         # If vref = 3.3 -> 1024bit => if vref = 3.21 -> 996.0bit
-        raw_adc = self.adc.read(self.KY_PIN)
+        raw_adc = self.adc.read()
 
         vdig = (vref * raw_adc)/1023
         return vdig 

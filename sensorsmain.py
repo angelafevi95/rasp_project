@@ -11,8 +11,9 @@ from datetime import datetime
 now = datetime.now()
 # dd/mm/YY H:M:S
 # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-# print("date and time =", dt_string)	
 dt_string = now.strftime("%d%m%Y%H%M")
+
+print("date and time =", dt_string)	
 
 ########################################## Create sensor objects:
 
@@ -68,7 +69,7 @@ def createLists():
 
     return ldrList, dhtHumList, dhtTempList, mqSmokeList, soundList 
 
-def createDict(ldrList, dhtHumList, dhtTempList, mqSmokeList, soundList ):
+def createDict(ldrList, dhtHumList, dhtTempList, mqSmokeList, soundList, sensorDict ):
     
 
     # sensorDict['date'] = dt_string
@@ -89,7 +90,7 @@ def createDict(ldrList, dhtHumList, dhtTempList, mqSmokeList, soundList ):
 
 ldrList, dhtHumList, dhtTempList, mqSmokeList, soundList  = createLists()
 sensorDict = {}
-sensorDict = createDict(ldrList, dhtHumList, dhtTempList, mqSmokeList, soundList)
+sensorDict = createDict(ldrList, dhtHumList, dhtTempList, mqSmokeList, soundList, sensorDict)
 
 mongo = mongoDB()
 

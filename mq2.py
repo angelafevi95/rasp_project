@@ -25,10 +25,10 @@ class MQ():
     GAS_CO                       = 1
     GAS_SMOKE                    = 2
 
-    def __init__(self, Ro=10, analogPin=0):
-        self.Ro = Ro
-        self.MQ_PIN = analogPin
+    def __init__(self):
+        self.Ro = 10
         self.adc = mcp(0)
+        self.MQ_PIN 
         
         self.LPGCurve = [2.3,0.21,-0.47]    # two points are taken from the curve. 
                                             # with these two points, a line is formed which is "approximately equivalent"
@@ -82,7 +82,7 @@ class MQ():
     def MQCalibration(self, mq_pin):
         val = 0.0
         for i in range(self.CALIBARAION_SAMPLE_TIMES):          # take multiple samples
-            val += self.MQResistanceCalculation(self.adc.read(mq_pin))
+            val += self.MQResistanceCalculation(self.adc.read())
             time.sleep(self.CALIBRATION_SAMPLE_INTERVAL/1000.0)
             
         val = val/self.CALIBARAION_SAMPLE_TIMES                 # calculate the average value
@@ -105,7 +105,7 @@ class MQ():
         rs = 0.0
 
         for i in range(self.READ_SAMPLE_TIMES):
-            rs += self.MQResistanceCalculation(self.adc.read(mq_pin))
+            rs += self.MQResistanceCalculation(self.adc.read())
             time.sleep(self.READ_SAMPLE_INTERVAL/1000.0)
 
         rs = rs/self.READ_SAMPLE_TIMES
@@ -161,3 +161,5 @@ class MQ():
         perc = self.MQPercentage()
         return perc["GAS_LPG"], perc["CO"], perc["SMOKE"]
 
+
+print("mq2")

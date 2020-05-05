@@ -14,7 +14,7 @@ mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 class MCP3008():
 
-    def __init__(self):
+    def __init__(self, analogPin):
         self.CLK =  18
         self.MISO = 23
         self.MOSI = 24
@@ -29,6 +29,7 @@ class MCP3008():
         #     values[i] = mcp.read_adc(i)
 
         value = mcp.read_adc(self.nchannel)
+        print("raw_adw", value)
 
         return value
 

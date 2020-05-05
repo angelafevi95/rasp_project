@@ -62,7 +62,6 @@ class mongoDB():
 #     countDocs = mongo.getCountDocs(records)
 #     print("Count", countDocs)
 
-main()
-print("klok")
+print("klok mongo")
 
 
