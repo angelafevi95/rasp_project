@@ -2,12 +2,13 @@ import time
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
+import adafruit_bus_device
 
 # Software SPI configuration:
 CLK  = 18
 MISO = 23
 MOSI = 24
-CS   = 25
+CS   = 27
 mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 
@@ -15,12 +16,18 @@ mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 class MCP3008():
 
     def __init__(self, analogPin):
-        self.CLK =  18
-        self.MISO = 23
-        self.MOSI = 24
-        self.CS   = 25
-        self.nchannel = analogPin
-        self.mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+        # self.CLK =  18
+        # self.MISO = 23
+        # self.MOSI = 24
+        # self.CS   = 25
+        # self.nchannel = analogPin
+        # self.mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+
+        
+        # # Hardware SPI configuration:
+        # SPI_PORT   = 0
+        # SPI_DEVICE = 0
+        # self.mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
     def read(self):
 

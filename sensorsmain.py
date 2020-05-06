@@ -59,11 +59,11 @@ def createLists():
     for i in range(0,5):
         ldrList.append(ldr1.get_lux())
         hum, temp = dht.get_data()
+        soundList.append(sound.voltCalculation())
         dhtHumList.append(hum)
         dhtTempList.append(temp)
         listLPG, listCO, listSMOKE = mq.get_data()
         mqSmokeList.append(listSMOKE)
-        soundList.append(sound.voltCalculation())
 
         time.sleep(2)
 
